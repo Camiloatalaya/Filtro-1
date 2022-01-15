@@ -1,26 +1,64 @@
 import { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
+const initialState = {
+	valueInput: '',
+	valueSelect: 'ts',
+	valueRadio: true
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+	const [value, setValue] = useState(initialState)
+	const { valueInput, valueSelect, valueRadio } = value
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <form action="">
-        <input type="text"  />
-        <select name="" id="">
-          <option value="">Typescript</option>
-          <option value="">js</option>
-          <option value="">bootstrap</option>
-        </select>
-        <input type="radio" name="" id="" />
-        </form>
-        
-      </header>
-    </div>
-  )
+	const handleInput = (valueInput, name) => {
+		name === 'valueRadio'
+			? setValue({ ...value, [name]: !valueRadio })
+			: setValue({ ...value, [name]: valueInput })
+	}
+
+	return (
+		<div className='App'>
+			<header className='App-header'>
+				<div>
+					<p>
+						{JSON.stringify(
+							{ valueInput, valueSelect, valueRadio },
+							null,
+							4
+						)}
+					</p>
+				</div>
+				<form action=''>
+					<input
+						type='text'
+						value={valueInput}
+						onChange={(event) =>
+							handleInput(event.target.value, 'valueInput')
+						}
+					/>
+					<select
+						value={valueSelect}
+						name=''
+						id=''
+						onChange={(event) =>
+							handleInput(event.target.value, 'valueSelect')
+						}
+					>
+						<option value='ts'>Typescript</option>
+						<option value='js'>js</option>
+						<option value='boo'>bootstrap</option>
+					</select>
+					<input
+						value={valueRadio}
+						type='checkbox'
+						onChange={(event) =>
+							handleInput(event.target.value, 'valueRadio')
+						}
+					/>
+				</form>
+			</header>
+		</div>
+	)
 }
 
 export default App
