@@ -8,13 +8,16 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <input type="text" />
+        <form action="">
+        <input type="text"  />
         <select name="" id="">
           <option value="">Typescript</option>
           <option value="">js</option>
           <option value="">bootstrap</option>
         </select>
         <input type="radio" name="" id="" />
+        </form>
+        
       </header>
     </div>
   )
